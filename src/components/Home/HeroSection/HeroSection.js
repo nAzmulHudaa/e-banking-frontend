@@ -1,10 +1,9 @@
 import React from 'react';
 import './HeroSection.css';
-import heroImg from '../../../images/mobile-app-header-ime-desktop (1).png';
+import heroImg from '../../../images/Layer_1.png';
 
 const HeroSection = () => {
   return (
-  
     <div className='hero-section'>
       <div className='hero-text'>
         <h4>
