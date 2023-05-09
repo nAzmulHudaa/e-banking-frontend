@@ -1,0 +1,87 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111112;
+    color: #ffffff;
+    padding: 15px 50px;
+  }
+  
+  .logo {
+    width: 25%;
+  }
+  
+  .logo h3 {
+    margin: 0;
+    font-size: 28px;
+  }
+  
+  .menu {
+    width: 75%;
+    display: flex;
+    justify-content:end;
+    align-items: center;
+  }
+  
+  .menu ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+  }
+  
+  .menu li {
+    margin-right: 20px;
+  }
+  
+  .menu a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  
+  .menu a:hover {
+    color: #d8d8d8;
+  }
+  
+  .icon {
+    margin-right: 10px;
+    font-size: 20px;
+  }
+  
+  .buttons {
+    display: flex;
+  }
+  
+  .sign-in-btn {
+    background-color: #494a4b;
+    color: #ffffff;
+    border: none;
+    padding: 10px 30px;
+    margin-right: 10px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .sign-in-btn:hover {
+    background-color: #5d5e5f;
+  }
+  
+  .register-btn {
+    background-color: #ffffff;
+    color: #494a4b;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .register-btn:hover {
+    background-color: #d8d8d8;
+  }
+  
