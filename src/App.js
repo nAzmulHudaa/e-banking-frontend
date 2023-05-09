@@ -1,31 +1,19 @@
 import './App.css';
-import Clients from './components/Home/Clients/Clients';
-import Feature from './components/Home/Features/Features';
-import HeroSection from './components/Home/HeroSection/HeroSection';
-import Navbar from './components/Home/Navbar/Navbar';
-import Testimonial from './components/Home/Testimonial/Testimonial';
-import Work from './components/Home/Work/Work';
-import Workflow from './components/Home/Workflow/Workflow';
-import Login from './components/Home/Login/Login';
-import Footer from './components/Home/Footer/Footer';
-import FAQ from './components/Home/FAQ/FAQ';
+import Home from './components/Home/HomeMain.js';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './components/Home/Login/Login.js';
 import Sign from './components/Home/Sign/Sign.js';
-
 
 function App() {
   return (
-    <div className='App'>
-      <Navbar />
-      <HeroSection />
-      <Clients />
-      <Feature />
-      <Workflow />
-      <Work />
-      <FAQ />
-      <Testimonial />
-      <Footer />
-      {/* <Sign /> */}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Sign />} />
+      </Routes>
+    </Router>
   );
 }
 
