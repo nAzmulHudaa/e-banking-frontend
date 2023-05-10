@@ -10,19 +10,21 @@ import Login from './components/Home/Login/Login';
 import Footer from './components/Home/Footer/Footer';
 import FAQ from './components/Home/FAQ/FAQ';
 import Sign from './components/Home/Sign/Sign.js';
+import { Dashboard } from './components/Dashboard/Dashboard';
 
 
 function App() {
   return (
     <div className='App'>
-      <Navbar />
+      {/* <Navbar />
       <HeroSection />
       <Clients />
       <Feature />
       <Workflow />
       <Work />
       <FAQ />
-      <Testimonial />
+      <Testimonial /> */}
+      <Dashboard />
       <Footer />
       {/* <Sign /> */}
     </div>
