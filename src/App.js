@@ -6,6 +6,7 @@ import Sign from './components/Home/Sign/Sign.js';
 
 function App() {
   return (
+
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -14,6 +15,7 @@ function App() {
         <Route path="/register" element={<Sign />} />
       </Routes>
     </Router>
+
   );
 }
 
