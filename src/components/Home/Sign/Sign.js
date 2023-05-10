@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Sign = () => {
     return (
@@ -6,7 +7,7 @@ const Sign = () => {
             <section class="bg-white">
                 <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
                     <section
-                        class="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6"
+                        class="relative flex h-32 items-center bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6"
                     >
                         <img
                             alt="Night"
@@ -31,7 +32,7 @@ const Sign = () => {
                             </a>
 
                             <h2 class="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-                                Welcome to Squid 🦑
+                                Welcome To E-bank
                             </h2>
 
                             <p class="mt-4 leading-relaxed text-white/90">
@@ -68,7 +69,7 @@ const Sign = () => {
                                 <h1
                                     class="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl"
                                 >
-                                    Welcome to Squid 🦑
+                                    Welcome to E-Banking Software
                                 </h1>
 
                                 <p class="mt-4 leading-relaxed text-gray-500">
@@ -78,6 +79,7 @@ const Sign = () => {
                             </div>
 
                             <form action="#" class="mt-8 grid grid-cols-6 gap-6">
+
                                 <div class="col-span-6 sm:col-span-3">
                                     <label
                                         for="FirstName"
@@ -175,10 +177,10 @@ const Sign = () => {
                                     <p class="text-sm text-gray-500">
                                         By creating an account, you agree to our
                                         <a href="#" class="text-gray-700 underline">
-                                            terms and conditions
+                                             terms and conditions
                                         </a>
                                         and
-                                        <a href="#" class="text-gray-700 underline">privacy policy</a>.
+                                        <a href="#" class="text-gray-700 underline"> privacy policy</a>.
                                     </p>
                                 </div>
 
@@ -191,7 +193,9 @@ const Sign = () => {
 
                                     <p class="mt-4 text-sm text-gray-500 sm:mt-0">
                                         Already have an account?
-                                        <a href="#" class="text-gray-700 underline">Log in</a>.
+                                        <a href="#" class="text-gray-700 underline">
+                                            <Link to='/login'>Log in</Link>
+                                        </a>
                                     </p>
                                 </div>
                             </form>

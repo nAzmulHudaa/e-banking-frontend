@@ -1,6 +1,8 @@
 import React from 'react';
 import './HeroSection.css';
 import heroImg from '../../../images/Layer_1.png';
+import { Link } from 'react-router-dom';
+
 
 const HeroSection = () => {
   return (
@@ -16,7 +18,7 @@ const HeroSection = () => {
           your business up to the world.
         </p>
         <button className='gradient-button'>
-          Register Now
+         <Link to ='/register'>Register Now</Link> 
         </button>
       </div>
       <div className='hero-image'>
