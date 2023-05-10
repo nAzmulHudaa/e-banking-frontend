@@ -7,6 +7,7 @@ import ForgetPass from './components/Home/Login/ForgetPass.js';
 
 function App() {
   return (
+
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -16,6 +17,7 @@ function App() {
         <Route path="/forgetpass" element={<ForgetPass />} />
       </Routes>
     </Router>
+
   );
 }
 
