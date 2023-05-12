@@ -1,7 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// import firebase from "../firebase/firebase";
+import { useState } from "react";
+
 
 const Sign = () => {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+
+    // const handleSignup = async (event) => {
+    //     event.preventDefault();
+    //     try {
+    //         const userCredential = await firebase
+    //             .auth()
+    //             .createUserWithEmailAndPassword(email, password);
+    //         const user = userCredential.user;
+    //         await user.updateProfile({
+    //             displayName: name,
+    //         });
+    //     } catch (error) {
+    //         setErrorMessage(error.message);
+    //     }
+    // };
     return (
         <div>
             <section class="bg-white">
@@ -177,7 +199,7 @@ const Sign = () => {
                                     <p class="text-sm text-gray-500">
                                         By creating an account, you agree to our
                                         <a href="#" class="text-gray-700 underline">
-                                             terms and conditions
+                                            terms and conditions
                                         </a>
                                         and
                                         <a href="#" class="text-gray-700 underline"> privacy policy</a>.

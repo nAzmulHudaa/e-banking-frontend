@@ -1,7 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+// import firebase from "../firebase/firebase";
+
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  // const handleLogin = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     await firebase.auth().signInWithEmailAndPassword(email, password);
+  //   } catch (error) {
+  //     setErrorMessage(error.message);
+  //   }
+  // };
+
+
   return (
     <div>
       <main className="w-full max-w-md mx-auto p-6">
@@ -14,7 +32,7 @@ const Login = () => {
 
             </div>
             <div className="mt-5">
-              <form>
+              <form >
                 <div className="grid gap-y-4">
                   {/* Form Group */}
                   <div>
@@ -29,6 +47,8 @@ const Login = () => {
                         type="email"
                         id="email"
                         name="email"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
                         className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                         required=""
                         aria-describedby="email-error"
@@ -62,8 +82,8 @@ const Login = () => {
                         className="text-sm text-blue-600 decoration-2 hover:underline font-medium"
                         href="#"
                       >
-                        <Link to ='/forgetpass'>Forgot password?</Link>
-                       
+                        <Link to='/forgetpass'>Forgot password?</Link>
+
                       </a>
                     </div>
                     <div className="relative">
@@ -74,6 +94,8 @@ const Login = () => {
                         className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                         required=""
                         aria-describedby="password-error"
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
                       />
                       <div className="hidden absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
                         <svg
@@ -125,7 +147,7 @@ const Login = () => {
                       className="text-blue-600 decoration-2 hover:underline font-medium"
                       href="#"
                     >
-                      <Link to ='/register'>Register here</Link>
+                      <Link to='/register'>Register here</Link>
                     </a>
                   </p>
                 </div>
