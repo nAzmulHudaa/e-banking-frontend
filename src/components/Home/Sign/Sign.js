@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
 
 const Sign = () => {
     const [firstName, setFirstName] = useState("");
@@ -10,7 +9,6 @@ const Sign = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-    const navigate = useNavigate();
 
    
     function showModal() {
@@ -18,10 +16,6 @@ const Sign = () => {
         modal.classList.remove('hidden');
     }
 
-    function hideModal() {
-        const modal = document.querySelector('.modal');
-        modal.classList.add('hidden');
-    }
 
 
     const handleSubmit = async (event) => {

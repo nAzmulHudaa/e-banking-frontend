@@ -1,7 +1,6 @@
 import React from "react";
 import { FaCubes, FaIndustry } from "react-icons/fa";
 import "./Navbar.css";
-import { XMarkIcon } from '@heroicons/react/20/solid'
 import { Link } from 'react-router-dom';
 import logo from '../../../images/E-Banking (White)-01.png';
 

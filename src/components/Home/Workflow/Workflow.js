@@ -55,6 +55,7 @@ export default function Workflow() {
           <img
             src={mobImg}
             className='m-auto pl-3'
+            alt='image'
           />
         </div>
       </div>
