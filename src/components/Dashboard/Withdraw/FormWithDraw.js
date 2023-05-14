@@ -62,41 +62,41 @@ const FormWithDraw = () => {
         const userData = JSON.parse(localStorage.getItem('userData'));
         const currentBalance = userData.currentBalance;
         const withdrawAmount = parseFloat(transactionData.amount);
-      
+
         if (withdrawAmount > currentBalance) {
-          errModalInsuffBal();
-          return;
+            errModalInsuffBal();
+            return;
         }
-      
+
         const config = {
-          headers: {
-            'Content-Type': 'application/json'
-          }
+            headers: {
+                'Content-Type': 'application/json'
+            }
         };
-      
+
         const body = JSON.stringify({
-          senderName: userData.name,
-          senderEmail: userData.email,
-          senderAccountNumber: userData.accountNumber,
-          receiverName: transactionData.receiverName,
-          receiverEmail: transactionData.receiverEmail,
-          receiverAccountNumber: transactionData.receiverAccountNumber,
-          amount: transactionData.amount
+            senderName: userData.name,
+            senderEmail: userData.email,
+            senderAccountNumber: userData.accountNumber,
+            receiverName: transactionData.receiverName,
+            receiverEmail: transactionData.receiverEmail,
+            receiverAccountNumber: transactionData.receiverAccountNumber,
+            amount: transactionData.amount
         });
-      
+
         console.log('Sending request with body:', body);
-      
+
         axios.post('http://localhost:5000/api/withdraw', body, config)
-          .then(res => {
-            console.log('Response:', res.data);
-            showModal()
-          })
-          .catch(err => {
-            console.error('Error:', err.response.data);
-            errModal();
-          });
-      };
-      
+            .then(res => {
+                console.log('Response:', res.data);
+                showModal()
+            })
+            .catch(err => {
+                console.error('Error:', err.response.data);
+                errModal();
+            });
+    };
+
 
 
 
@@ -241,8 +241,6 @@ const FormWithDraw = () => {
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </main>
                         <p class="text-center text-sm text-gray-500 my-10">

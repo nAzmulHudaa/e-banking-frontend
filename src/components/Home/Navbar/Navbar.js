@@ -3,32 +3,32 @@ import { FaCubes, FaIndustry } from "react-icons/fa";
 import "./Navbar.css";
 import { XMarkIcon } from '@heroicons/react/20/solid'
 import { Link } from 'react-router-dom';
-
+import logo from '../../../images/E-Banking (White)-01.png';
 
 const Navbar = () => {
   return (
     <div>
       <nav className="navbar">
         <div className="logo">
-          <h3>LOGO</h3>
+          <img src={logo} alt="" className="logoImg" />
         </div>
         <div className="menu">
           <ul>
             <li>
-              <a href="#">
-                <FaCubes className="icon" /> Solutions
+              <a href="#solutions">
+                <FaCubes className="icon" />Solutions
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="#industries">
                 <FaIndustry className="icon" /> Industries
               </a>
             </li>
             <li>
-              <a href="#">Resources</a>
+              <a href="#resources">Resources</a>
             </li>
             <li>
-              <a href="#">About</a>
+              <a href="#about">About</a>
             </li>
           </ul>
           <div className="buttons">

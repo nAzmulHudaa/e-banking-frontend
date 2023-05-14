@@ -12,7 +12,7 @@ const Login = () => {
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
- 
+
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
@@ -28,9 +28,12 @@ const Login = () => {
         password: password,
       }),
     });
-    const { user, token } = await response.json();
-    console.log(user);
-    console.log(token);
+    const { user, token, error } = await response.json();
+    if (error) {
+      alert(error);
+      window.location.reload()
+      return;
+    }
     if (token) {
       localStorage.setItem('token', token);
       localStorage.setItem('userData', JSON.stringify(user));
@@ -38,9 +41,7 @@ const Login = () => {
       // Navigate the user  the dashboard
       navigate('/dashboard');
     }
-
   };
-
 
   return (
     <div>

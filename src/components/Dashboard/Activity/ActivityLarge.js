@@ -1,40 +1,19 @@
 import React from 'react';
-
-
-const fakeData = [
-    {
-        name: "Jennifer Lee",
-        email: "jennifer.lee@example.com",
-        amount: "-$123.45",
-        type: "Sent",
-        accountNumber: "1234567890",
-    },
-    {
-        name: "Mark Johnson",
-        email: "mark.johnson@example.com",
-        amount: "+$567.89",
-        type: "Received",
-        accountNumber: "0987654321",
-    },
-    {
-        name: "Sarah Kim",
-        email: "sarah.kim@example.com",
-        amount: "+$890.12",
-        type: "Received",
-        accountNumber: "2468101214",
-    },
-    {
-        name: "Alex Chen",
-        email: "alex.chen@example.com",
-        amount: "-$456.78",
-        type: "Sent",
-        accountNumber: "1357911131",
-    },
-
-];
-
+import { useState, useEffect } from 'react';
 
 const ActivityLarge = () => {
+    const [transactions, setTransactions] = useState([]);
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    const userEmail = userData.email;
+    useEffect(() => {
+        async function fetchTransactions() {
+            const response = await fetch(`http://localhost:5000/latest/${userEmail}`);
+            const data = await response.json();
+            setTransactions(data);
+        }
+        fetchTransactions();
+    }, [userEmail]);
+
     return (
         <div>
             <div className="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
@@ -47,14 +26,14 @@ const ActivityLarge = () => {
                     </div>
                     <div className="flow-root">
                         <ul role="list" className="divide-y divide-gray-200">
-                            {fakeData.map((transaction, index) => (
+                            {transactions.map((transaction, index) => (
                                 <li key={index} className="py-3 sm:py-4">
                                     <div className="flex items-center space-x-4">
                                         <div className="flex-1 min-w-0">
                                             <p className="text-sm font-medium text-gray-900 truncate">
                                                 {transaction.name}
                                             </p>
-                                            <div className="text-gray-500 text-sm">A/C : {transaction.accountNumber}</div>
+                                            <div className="text-gray-500 text-sm">A/C : {transaction.accountNo}</div>
                                             <p className="text-sm text-gray-500 truncate">
                                                 <a
                                                     href={`mailto:${transaction.email}`}
@@ -67,7 +46,7 @@ const ActivityLarge = () => {
                                         </div>
                                         <div className="flex items-center space-x-2">
                                             <div
-                                                className={`inline-flex items-center text-base font-semibold ${transaction.type === "Sent" ? "text-red-500" : "text-green-500"
+                                                className={`inline-flex items-center text-base font-semibold ${transaction.paymentType === "send" ? "text-red-500" : "text-green-500"
                                                     }`}
                                             >
                                                 {transaction.amount}

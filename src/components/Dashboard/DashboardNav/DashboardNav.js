@@ -1,42 +1,44 @@
-import React, { useState ,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { HiBell } from 'react-icons/hi';
 import { HiUserCircle } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
+import logo from "../../../images/E-Banking (White)-01.png";
+
 
 const DashboardNav = () => {
     const [user, setUser] = useState([]);
     const [isNavOpen, setIsNavOpen] = useState(false);
-    
+
     const handleNavToggle = () => {
         setIsNavOpen(!isNavOpen);
     };
-    
+
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem('userData')));
     }, []);
-    
+
     function handleLogout() {
         fetch('http://localhost:5000/user/logout', {
-          method: 'POST'
+            method: 'POST'
         })
-        .then(response => {
-          if (response.ok) {
-            setUser(null);
-            localStorage.removeItem('userData');
-            localStorage.removeItem('userData');
-            navigate('/login');
-          } else {
-            console.log(response.statusText);
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-      }
-      
-      
+            .then(response => {
+                if (response.ok) {
+                    setUser(null);
+                    localStorage.removeItem('userData');
+                    localStorage.removeItem('userData');
+                    navigate('/login');
+                } else {
+                    console.log(response.statusText);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+
     return (
         <nav className="bg-black border-b border-gray-200 fixed z-30 w-full">
             <div className="px-3 py-3 lg:px-5 lg:pl-3">
@@ -52,10 +54,9 @@ const DashboardNav = () => {
                                 </svg>
                             </button>
                             <a href="#" class="text-xl font-bold flex items-center lg:ml-2.5">
-                                <img src="https://demo.themesberg.com/windster/images/logo.svg" class="h-6 mr-2" alt="Windster Logo" />
-                                <span class="self-center whitespace-nowrap">Payoneer</span>
+                                <img src={logo} alt="" style = {{width:"150px"}}/>
                             </a>
-                           
+
                         </div>
                         <button
                             id="toggleSidebarMobile"
