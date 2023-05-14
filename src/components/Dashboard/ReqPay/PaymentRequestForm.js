@@ -8,14 +8,22 @@ function PaymentRequestForm() {
     const [paymentAmount, setPaymentAmount] = useState('');
     const [paymentDescription, setPaymentDescription] = useState('');
     const [dueDate, setDueDate] = useState('');
+    function showModal() {
+        const modal = document.querySelector('.modal');
+        modal.classList.remove('hidden');
+    }
 
+    function hideModal() {
+        const modal = document.querySelector('.modal');
+        modal.classList.add('hidden');
+    }
     function handleSubmit(e) {
         e.preventDefault();
 
         // Here you can process the payment request using the form data
         // For example, you can send the form data to a backend API to initiate the payment request
         console.log({ payerName, payerEmail, paymentAmount, paymentDescription, dueDate });
-
+        showModal();
         // Clear form fields
         setPayerName('');
         setPayerEmail('');
@@ -23,7 +31,7 @@ function PaymentRequestForm() {
         setPaymentDescription('');
         setDueDate('');
     }
-
+   
     return (
         <div>
             <div>
@@ -128,6 +136,19 @@ function PaymentRequestForm() {
 
                                     </div>
                                 </form>
+                                <div className="modal hidden fixed inset-0 z-50 overflow-auto bg-gray-500 bg-opacity-75 flex justify-center items-center">
+                                    <div className="modal-content bg-white w-1/3 rounded-lg p-6 shadow-lg">
+                                        <div className="flex flex-col items-center justify-center mb-6">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-16 h-16 text-green-500 mb-4">
+                                                <path fillRule="evenodd" d="M10 19.6a9.6 9.6 0 110-19.2 9.6 9.6 0 010 19.2zm4.24-10.14a.75.75 0 00-1.06-1.06l-3.75 3.75-1.41-1.41a.75.75 0 00-1.06 1.06l1.91 1.91a.75.75 0 001.06 0l4.25-4.25z" clipRule="evenodd" />
+                                            </svg>
+                                            <p className="text-2xl font-bold">Payment Request successful!</p>
+                                        </div>
+                                        <div class="flex justify-center">
+                                            <button onClick={hideModal} className="py-2 px-4 text-white bg-green-500 hover:bg-green-600 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">OK</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </main>
                         <p class="text-center text-sm text-gray-500 my-10">

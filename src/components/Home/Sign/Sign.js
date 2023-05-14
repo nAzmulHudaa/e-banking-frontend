@@ -1,29 +1,63 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import firebase from "../firebase/firebase";
 import { useState } from "react";
-
+import { useNavigate } from 'react-router-dom';
 
 const Sign = () => {
-    const [name, setName] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const navigate = useNavigate();
 
-    // const handleSignup = async (event) => {
-    //     event.preventDefault();
-    //     try {
-    //         const userCredential = await firebase
-    //             .auth()
-    //             .createUserWithEmailAndPassword(email, password);
-    //         const user = userCredential.user;
-    //         await user.updateProfile({
-    //             displayName: name,
-    //         });
-    //     } catch (error) {
-    //         setErrorMessage(error.message);
-    //     }
-    // };
+   
+    function showModal() {
+        const modal = document.querySelector('.modal');
+        modal.classList.remove('hidden');
+    }
+
+    function hideModal() {
+        const modal = document.querySelector('.modal');
+        modal.classList.add('hidden');
+    }
+
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if (password !== confirmPassword) {
+            setErrorMessage("Passwords do not match");
+            return;
+        }
+
+        const name = `${firstName} ${lastName}`;
+        const user = {
+            name: name,
+            email: email,
+            password: password,
+        };
+
+        console.log(user);
+        try {
+            const response = await fetch("http://localhost:5000/user/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user),
+            });
+            const data = await response.json();
+            console.log(data);
+            showModal();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+
+
     return (
         <div>
             <section class="bg-white">
@@ -66,7 +100,7 @@ const Sign = () => {
 
                     <main
                         aria-label="Main"
-                        class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6"
+                        class="flex items-center justify-center px-6 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6"
                     >
                         <div class="max-w-xl lg:max-w-3xl">
                             <div class="relative -mt-16 block lg:hidden">
@@ -100,127 +134,116 @@ const Sign = () => {
                                 </p>
                             </div>
 
-                            <form action="#" class="mt-8 grid grid-cols-6 gap-6">
-
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label
-                                        for="FirstName"
-                                        class="block text-sm font-medium text-gray-700"
-                                    >
+                            <form action="#" onSubmit={handleSubmit} className="mt-8 grid grid-cols-6 gap-6">
+                                <div className="col-span-6 sm:col-span-3">
+                                    <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">
                                         First Name
                                     </label>
-
                                     <input
                                         type="text"
                                         id="FirstName"
                                         name="first_name"
-                                        class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                                        className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm px-3 py-2"
+                                        value={firstName}
+                                        onChange={(event) => setFirstName(event.target.value)}
+                                        required
                                     />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label
-                                        for="LastName"
-                                        class="block text-sm font-medium text-gray-700"
-                                    >
+                                <div className="col-span-6 sm:col-span-3">
+                                    <label htmlFor="LastName" className="block text-sm font-medium text-gray-700">
                                         Last Name
                                     </label>
-
                                     <input
                                         type="text"
                                         id="LastName"
                                         name="last_name"
-                                        class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                                        className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm px-3 py-2"
+                                        value={lastName}
+                                        onChange={(event) => setLastName(event.target.value)}
+                                        required
                                     />
                                 </div>
 
-                                <div class="col-span-6">
-                                    <label for="Email" class="block text-sm font-medium text-gray-700">
+                                <div className="col-span-6">
+                                    <label htmlFor="Email" className="block text-sm font-medium text-gray-700">
                                         Email
                                     </label>
-
                                     <input
                                         type="email"
                                         id="Email"
                                         name="email"
-                                        class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                                        className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm px-3 py-2"
+                                        value={email}
+                                        onChange={(event) => setEmail(event.target.value)}
+                                        required
                                     />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label
-                                        for="Password"
-                                        class="block text-sm font-medium text-gray-700"
-                                    >
+                                <div className="col-span-6 sm:col-span-3">
+                                    <label htmlFor="Password" className="block text-sm font-medium text-gray-700">
                                         Password
                                     </label>
-
                                     <input
                                         type="password"
                                         id="Password"
                                         name="password"
-                                        class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                                        className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm px-3 py-2"
+                                        value={password}
+                                        onChange={(event) => setPassword(event.target.value)}
+                                        required
                                     />
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label
-                                        for="PasswordConfirmation"
-                                        class="block text-sm font-medium text-gray-700"
-                                    >
-                                        Password Confirmation
+                                <div className="col-span-6 sm:col-span-3">
+                                    <label htmlFor="ConfirmPassword" className="block text-sm font-medium text-gray-700">
+                                        Confirm Password
                                     </label>
-
                                     <input
                                         type="password"
-                                        id="PasswordConfirmation"
-                                        name="password_confirmation"
-                                        class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                                        id="ConfirmPassword"
+                                        name="confirm_password"
+                                        className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm px-3 py-2"
+                                        value={confirmPassword}
+                                        onChange={(event) => setConfirmPassword(event.target.value)}
                                     />
                                 </div>
 
-                                <div class="col-span-6">
-                                    <label for="MarketingAccept" class="flex gap-4">
-                                        <input
-                                            type="checkbox"
-                                            id="MarketingAccept"
-                                            name="marketing_accept"
-                                            class="h-5 w-5 rounded-md border-gray-200 bg-white shadow-sm"
-                                        />
-
-                                        <span class="text-sm text-gray-700">
-                                            I want to receive emails about events, product updates and
-                                            company announcements.
-                                        </span>
-                                    </label>
+                                <div className="col-span-6">
+                                    <p className="text-red-500">{errorMessage}</p>
                                 </div>
 
-                                <div class="col-span-6">
-                                    <p class="text-sm text-gray-500">
-                                        By creating an account, you agree to our
-                                        <a href="#" class="text-gray-700 underline">
-                                            terms and conditions
-                                        </a>
-                                        and
-                                        <a href="#" class="text-gray-700 underline"> privacy policy</a>.
-                                    </p>
-                                </div>
-
-                                <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
+                                <div className="col-span-6">
                                     <button
-                                        class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
+                                        type="submit"
+                                        className="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-900 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                                     >
-                                        Create an account
+                                        Sign Up
                                     </button>
-
-                                    <p class="mt-4 text-sm text-gray-500 sm:mt-0">
-                                        Already have an account?
-                                        <a href="#" class="text-gray-700 underline">
-                                            <Link to='/login'>Log in</Link>
-                                        </a>
-                                    </p>
                                 </div>
                             </form>
+                          
+                                <div className="modal hidden fixed inset-0 z-50 overflow-auto bg-gray-500 bg-opacity-75 flex justify-center items-center">
+                                    <div className="modal-content bg-white w-1/3 rounded-lg p-6 shadow-lg">
+                                        <div className="flex flex-col items-center justify-center mb-6">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-16 h-16 text-green-500 mb-4">
+                                                <path fillRule="evenodd" d="M10 19.6a9.6 9.6 0 110-19.2 9.6 9.6 0 010 19.2zm4.24-10.14a.75.75 0 00-1.06-1.06l-3.75 3.75-1.41-1.41a.75.75 0 00-1.06 1.06l1.91 1.91a.75.75 0 001.06 0l4.25-4.25z" clipRule="evenodd" />
+                                            </svg>
+                                            <p className="text-2xl font-bold">Sign Up Successful!</p>
+                                        </div>
+                                        <div class="flex justify-center">
+                                            <Link to ='/login'>
+                                            <button  className="py-2 px-4 text-white bg-green-500 hover:bg-green-600 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Login Now</button></Link>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                            <p className="mt-2 text-center text-sm text-gray-600">
+                                Already have an account?{" "}
+                                <Link to="/login" className="font-medium text-gray-900 underline">
+                                    Log in
+                                </Link>
+                            </p>
                         </div>
                     </main>
                 </div>
@@ -230,3 +253,9 @@ const Sign = () => {
 };
 
 export default Sign;
+
+
+
+
+
+

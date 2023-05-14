@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-// import firebase from "../firebase/firebase";
 
 
 const Login = () => {
@@ -10,14 +9,37 @@ const Login = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  // const handleLogin = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     await firebase.auth().signInWithEmailAndPassword(email, password);
-  //   } catch (error) {
-  //     setErrorMessage(error.message);
-  //   }
-  // };
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+ 
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const response = await fetch('http://localhost:5000/user/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+    const { user, token } = await response.json();
+    console.log(user);
+    console.log(token);
+    if (token) {
+      localStorage.setItem('token', token);
+      localStorage.setItem('userData', JSON.stringify(user));
+      console.log('logged in');
+      // Navigate the user  the dashboard
+      navigate('/dashboard');
+    }
+
+  };
 
 
   return (
@@ -32,7 +54,7 @@ const Login = () => {
 
             </div>
             <div className="mt-5">
-              <form >
+              <form onSubmit={handleLogin} >
                 <div className="grid gap-y-4">
                   {/* Form Group */}
                   <div>
@@ -48,7 +70,7 @@ const Login = () => {
                         id="email"
                         name="email"
                         value={email}
-                        onChange={(event) => setEmail(event.target.value)}
+                        onChange={handleEmailChange}
                         className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                         required=""
                         aria-describedby="email-error"
@@ -95,7 +117,7 @@ const Login = () => {
                         required=""
                         aria-describedby="password-error"
                         value={password}
-                        onChange={(event) => setPassword(event.target.value)}
+                        onChange={handlePasswordChange}
                       />
                       <div className="hidden absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
                         <svg
@@ -136,6 +158,7 @@ const Login = () => {
                     </div>
                   </div>
                   <button
+
                     type="submit"
                     className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
                   >

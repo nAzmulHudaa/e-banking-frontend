@@ -1,47 +1,21 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom';
 // import { HiOutlineCreditCard } from "react-icons/hi";
 import DashboardNav from './DashboardNav/DashboardNav.js';
 import Sidebar from './DashboardNav/Sidebar.js';
 import Activity from './Activity/Activity.js';
 import Card from './Card/Card.js';
-const fakeData = [
-   {
-      name: "Neil Sims",
-      email: "neil.sims@example.com",
-      image: "https://demo.themesberg.com/windster/images/users/neil-sims.png",
-      amount: "$320",
-   },
-   {
-      name: "Bonnie Green",
-      email: "bonnie.green@example.com",
-      image: "https://demo.themesberg.com/windster/images/users/bonnie-green.png",
-      amount: "$3467",
-   },
-   {
-      name: "Michael Gough",
-      email: "michael.gough@example.com",
-      image: "https://demo.themesberg.com/windster/images/users/michael-gough.png",
-      amount: "$67",
-   },
-   {
-      name: "Thomes Lean",
-      email: "thomes.lean@example.com",
-      image: "https://demo.themesberg.com/windster/images/users/thomas-lean.png",
-      amount: "$2367",
-   },
-   {
-      name: "Lana Byrd",
-      email: "lana.byrd@example.com",
-      image: "https://demo.themesberg.com/windster/images/users/lana-byrd.png",
-      amount: "$150",
-   },
-];
+
 
 export const Dashboard = () => {
+   const navigate = useNavigate();
+
+
+
    return (
-     <div>
-          <div>
+      <div>
+         <div>
+
             <DashboardNav />
             <div class="flex overflow-hidden bg-white pt-16">
                <Sidebar />

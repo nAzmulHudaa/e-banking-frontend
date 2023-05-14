@@ -71,9 +71,9 @@ const FormTransfer = () => {
                                                 required
                                             >
                                                 <option value="" disabled selected>Select currency</option>
-                                                <option value="USD">USD</option>
-                                                <option value="EUR">EUR</option>
-                                                <option value="GBP">GBP</option>
+                                                <option value="USD">BDT</option>
+                                                <option value="EUR">USD</option>
+                                                <option value="GBP">EUR</option>
                                             </select>
                                         </div>
                                         <div className="mb-4">
@@ -88,6 +88,8 @@ const FormTransfer = () => {
                                             // onChange={handleAmountChange}
                                             className="block w-full px-4 py-2 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 border-gray-300"
                                             required
+                                            placeholder="Enter Amount"
+
                                         />
                                     </div>
                                         <div className="mt-8">
